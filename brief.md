@@ -4,7 +4,12 @@
 Usability test prototype for Maze. Tests the full post-purchase activation flow — from cart through email verification and identity confirmation — as a standalone desktop web prototype.
 
 ## Status
-**All 5 phases complete. All 9 screens built and verified.**
+**All 5 phases complete. All 9 screens built and verified. Deployed to Vercel.**
+
+---
+
+## Live URL
+**https://ls-post-purchase-og.vercel.app**
 
 ---
 
@@ -58,6 +63,15 @@ Usability test prototype for Maze. Tests the full post-purchase activation flow 
 - "Activate membership" button is **disabled** until both DOB and SSN fields are valid — changes from gray to purple when unlocked
 - `ActivationSuccess.jsx`: illustrated success state, membership card (#F5F3FF bg), "Go to dashboard" + "Download the app" CTAs (decorative), confirmation footer
 
+### Phase 6 — SSN Tooltip + Deployment ✅ *(Added 2026-04-14)*
+- Added hover tooltip on the `ⓘ` info icon next to "Last 4 digits of SSN" label in `Activation.jsx`
+- Tooltip matches reference design: dark (#1a1a1a) rounded pill, white text, downward-pointing caret, appears above the icon
+- Text: *"We collect this to verify your identity and prevent fraud."*
+- Implemented with Tailwind `group` / `group-hover` — no JS required, pure CSS hover
+- `Screenshots/Tooltip.png` added as reference asset
+- Prototype deployed to **Vercel** at https://ls-post-purchase-og.vercel.app
+- All changes committed and pushed to GitHub (`kclwork/ls-post-purchase-og`, branch `main`)
+
 ---
 
 ## Key Decisions & Deviations from Original Brief
@@ -71,6 +85,7 @@ Usability test prototype for Maze. Tests the full post-purchase activation flow 
 | DOB validation | Full calendar-aware validation added (e.g. June 31 correctly rejected) |
 | Background headline weight | Changed from `font-extrabold` → `font-weight: 500` per feedback |
 | Navigation | Single-page app — no React Router; all screen changes via `useState` + `setScreen` passed as `navigate` prop |
+| SSN tooltip | Added CSS-only hover tooltip on `ⓘ` icon next to SSN label; dark pill style with downward caret matching `Screenshots/Tooltip.png` |
 
 ---
 
@@ -106,7 +121,8 @@ ls-post-purchase-og/
 │   ├── 06_Gmail-Inbox.png
 │   ├── 07_Gmail-Message.png
 │   ├── 08_ECO-Activation.png
-│   └── 09_ECO-Activation-Success.png
+│   ├── 09_ECO-Activation-Success.png
+│   └── Tooltip.png           # Reference for SSN info tooltip (added 2026-04-14)
 └── src/
     ├── main.jsx              # React entry point
     ├── index.css             # Tailwind directives + slide-in keyframe animation
@@ -122,7 +138,7 @@ ls-post-purchase-og/
         ├── Confirmation.jsx      # Includes ActivationModal inline
         ├── GmailInbox.jsx
         ├── GmailMessage.jsx
-        ├── Activation.jsx
+        ├── Activation.jsx        # SSN tooltip added 2026-04-14
         └── ActivationSuccess.jsx
 ```
 
@@ -140,13 +156,23 @@ ls-post-purchase-og/
 | Input border | `#D1D5DB` |
 | Background gray | `#F9FAFB` |
 | Overlay | `rgba(0,0,0,0.4)` |
+| Tooltip bg | `#1a1a1a` |
+
+---
+
+## Deployment
+
+| Platform | URL |
+|----------|-----|
+| Vercel (production) | https://ls-post-purchase-og.vercel.app |
+| GitHub | https://github.com/kclwork/ls-post-purchase-og |
+| Branch | `main` |
 
 ---
 
 ## What's Left To Do
 
-Nothing — prototype is complete. Possible future additions if needed:
+Nothing — prototype is complete and live. Possible future additions if needed:
 
-- Deploy to Vercel for a shareable Maze URL
 - Add a start/intro screen for Maze task framing
 - Swap static user details ("Jon Doe", "jon****@gmail.com") with configurable props if participant personalization is needed
