@@ -139,7 +139,25 @@ export default function Activation({ navigate }) {
             <div>
               <label className="flex items-center gap-1.5 text-[13px] font-semibold text-gray-800 mb-1.5">
                 Last 4 digits of SSN
-                <InfoCircleIcon size={14} color="#9CA3AF" />
+                <span className="relative group">
+                  <InfoCircleIcon size={14} color="#9CA3AF" />
+                  <span
+                    className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[260px] rounded-lg px-3 py-2 text-xs font-normal text-white opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                    style={{ background: '#1a1a1a', lineHeight: '1.5' }}
+                  >
+                    We collect this to verify your identity and prevent fraud.
+                    {/* Caret */}
+                    <span
+                      className="absolute top-full left-1/2 -translate-x-1/2"
+                      style={{
+                        width: 0, height: 0,
+                        borderLeft: '6px solid transparent',
+                        borderRight: '6px solid transparent',
+                        borderTop: '6px solid #1a1a1a',
+                      }}
+                    />
+                  </span>
+                </span>
               </label>
               <div className="relative">
                 <input
